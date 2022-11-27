@@ -1,0 +1,20 @@
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+
+# Importing the dataset
+dataset = pd.read_csv('IRIS.csv')
+X = dataset.drop(columns='species', axis=1)
+y = dataset['species']
+
+# Splitting the dataset into the Training set and Test set
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state = 0)
+
+classifier = KNeighborsClassifier(n_neighbors = 1)
+classifier.fit(X_train, y_train)
+
+data = np.array([[6.4,3.2,4.5,1.5]], dtype = float)
+predictions = classifier.predict(data)
+
+print(predictions)
